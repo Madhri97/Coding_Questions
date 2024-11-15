@@ -3,13 +3,13 @@
 
 Python script reads patterns from a file provided as a command-line argument and then filters and prints lines from the standard input (stdin) that contain any of those patterns.
 
-# To add the comment from files at top of the file in vim :
+#To add the comment from files at top of the file in vim :
 :r! zcat q1_data.tsv.gz | head -n 5 | sed 's/^/\/\/ /'
 
-# To run the script 
+#To run the script 
 zcat q1_data.tsv.gz | python select_lines.py to_select.tsv > matched_lines.tsv
 
-# To just get the ouput using the awk command:
+#To just get the ouput using the awk command:
 zcat q1_data.tsv.gz | awk 'NR==FNR {patterns[$0]; next} NR>FNR {for (i=1; i<=NF; i++) if ($i in patterns) {print; next}}' to_select.tsv - > output_file.tsv
 
 
@@ -17,7 +17,7 @@ zcat q1_data.tsv.gz | awk 'NR==FNR {patterns[$0]; next} NR>FNR {for (i=1; i<=NF;
 
 This R script reads a tab-separated dataset from standard input, where each row has x_value, y_value, and category. It then uses ggplot2 to create a line plot with points, grouped by category, and customizes the appearance (removes gridlines, adds black axes). Finally, it saves the plot to a specified output file with custom axis labels and title.
 
-# To run the script:
+#To run the script:
 cat q2_data.tsv | Rscript plot_gp_lines.R "different_clusters.png" "Relative from center [bp],Enrichment over Mean,MNase fragment profile"
 
 **Q3: Merge multiple files (R + Linux Command)**
@@ -36,8 +36,7 @@ This script takes a list of numerical values, groups them into quantiles, and ou
 
 Usage
 The script reads data from standard input and splits it into the specified number of quantiles. For each value, it outputs the value, its quantile, and the bin range it belongs to.
-
-# to run the script:
+#to run the script:
 cat first_hundred_numbers.tsv | python label_with_quantiles.py 4
 
 
@@ -46,7 +45,7 @@ cat first_hundred_numbers.tsv | python label_with_quantiles.py 4
 
 To plot the large the matrix to a haetamp,the data was convetred only in numerical foramt and string Id (First colum) is removed
 
-# command to get demo data:
+#command to get demo data:
 zcat big_data.tsv.gz | cut -f2- > demo_data.tsv
 
 Gnuplot script is used to get the .eps uisng command: gnuplot heatmap.gp
